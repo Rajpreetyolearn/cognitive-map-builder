@@ -1,0 +1,175 @@
+{
+  "curriculum": "CBSE",
+  "grade": "Grade 8",
+  "subject": "Science",
+  "topics": [
+    {
+      "name": "Crop Production and Management",
+      "description": "Study of agricultural practices for growing crops and managing their production",
+      "subtopics": [
+        {
+          "name": "Agricultural Practices",
+          "description": "Basic practices involved in crop production",
+          "key_points": [
+            "Preparation of soil",
+            "Sowing",
+            "Adding manure and fertilizers",
+            "Irrigation",
+            "Protecting from weeds",
+            "Harvesting",
+            "Storage"
+          ]
+        },
+        {
+          "name": "Types of Crops",
+          "description": "Classification of crops based on seasons and usage",
+          "key_points": [
+            "Kharif crops",
+            "Rabi crops",
+            "Food crops",
+            "Cash crops"
+          ]
+        },
+        {
+          "name": "Agricultural Tools",
+          "description": "Tools used in various agricultural practices",
+          "key_points": [
+            "Traditional tools",
+            "Modern machinery",
+            "Combines and harvesters",
+            "Seed drills"
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "type": "video",
+          "title": "Crop Production and Management",
+          "url": "https://www.youtube.com/watch?v=example1"
+        },
+        {
+          "type": "website",
+          "title": "Agricultural Practices in India",
+          "url": "https://www.example.com/agriculture-india"
+        }
+      ]
+    },
+    {
+      "name": "Microorganisms: Friend and Foe",
+      "description": "Study of various microorganisms and their effects on humans and the environment",
+      "subtopics": [
+        {
+          "name": "Types of Microorganisms",
+          "description": "Different categories of microorganisms",
+          "key_points": [
+            "Bacteria",
+            "Fungi",
+            "Protozoa",
+            "Algae",
+            "Viruses"
+          ]
+        },
+        {
+          "name": "Beneficial Microorganisms",
+          "description": "Microorganisms that are helpful to humans",
+          "key_points": [
+            "Making of curd and cheese",
+            "Production of antibiotics",
+            "Fixing nitrogen in soil",
+            "Cleaning the environment"
+          ]
+        },
+        {
+          "name": "Harmful Microorganisms",
+          "description": "Microorganisms that cause diseases and spoilage",
+          "key_points": [
+            "Disease-causing microorganisms",
+            "Food poisoning",
+            "Food spoilage",
+            "Microbial diseases in plants"
+          ]
+        },
+        {
+          "name": "Food Preservation",
+          "description": "Methods to preserve food from microbial spoilage",
+          "key_points": [
+            "Chemical methods",
+            "Preservation by sugar and salt",
+            "Refrigeration",
+            "Pasteurization"
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "type": "video",
+          "title": "Microorganisms: Friend and Foe",
+          "url": "https://www.youtube.com/watch?v=example2"
+        },
+        {
+          "type": "website",
+          "title": "Beneficial Microbes in Agriculture",
+          "url": "https://www.example.com/microbes-agriculture"
+        }
+      ]
+    },
+    {
+      "name": "Synthetic Fibres and Plastics",
+      "description": "Study of man-made fibres and plastics, their properties and uses",
+      "subtopics": [
+        {
+          "name": "Types of Synthetic Fibres",
+          "description": "Different kinds of synthetic fibres and their properties",
+          "key_points": [
+            "Rayon",
+            "Nylon",
+            "Polyester",
+            "Acrylic"
+          ]
+        },
+        {
+          "name": "Characteristics of Synthetic Fibres",
+          "description": "Properties that make synthetic fibres useful",
+          "key_points": [
+            "Durability",
+            "Less expensive",
+            "Variety of designs",
+            "Easy to maintain"
+          ]
+        },
+        {
+          "name": "Plastics",
+          "description": "Different types of plastics and their uses",
+          "key_points": [
+            "Thermoplastics",
+            "Thermosetting plastics",
+            "Plastics in daily life",
+            "Plastic pollution"
+          ]
+        },
+        {
+          "name": "Environmental Impact",
+          "description": "Effects of plastics on the environment",
+          "key_points": [
+            "Non-biodegradable nature",
+            "Recycling of plastics",
+            "Reducing plastic usage",
+            "Alternatives to plastics"
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "type": "video",
+          "title": "Synthetic Fibres and Plastics",
+          "url": "https://www.youtube.com/watch?v=example3"
+        },
+        {
+          "type": "website",
+          "title": "Plastic Pollution Solutions",
+          "url": "https://www.example.com/plastic-solutions"
+        }
+      ]
+    }
+  ]
+} 

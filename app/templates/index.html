@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognitive Map Builder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/d3@6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markmap-view@0.15.4"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="text-center my-4">
+            <h1>Cognitive Map Builder</h1>
+            <p class="lead">Create curriculum-aligned visual cognitive maps for academic topics</p>
+        </header>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Generate Cognitive Map</h5>
+                        <form id="mindmap-form" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="curriculum" class="form-label">Curriculum</label>
+                                <select class="form-select" id="curriculum" name="curriculum" required>
+                                    <option value="">Select Curriculum</option>
+                                    <option value="CBSE">CBSE</option>
+                                    <option value="ICSE">ICSE</option>
+                                    <option value="IGCSE">IGCSE</option>
+                                    <option value="IB">IB</option>
+                                    <option value="State Board">State Board</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="grade" class="form-label">Grade/Class</label>
+                                <select class="form-select" id="grade" name="grade" required>
+                                    <option value="">Select Grade</option>
+                                    <option value="Grade 1">Grade 1</option>
+                                    <option value="Grade 2">Grade 2</option>
+                                    <option value="Grade 3">Grade 3</option>
+                                    <option value="Grade 4">Grade 4</option>
+                                    <option value="Grade 5">Grade 5</option>
+                                    <option value="Grade 6">Grade 6</option>
+                                    <option value="Grade 7">Grade 7</option>
+                                    <option value="Grade 8">Grade 8</option>
+                                    <option value="Grade 9">Grade 9</option>
+                                    <option value="Grade 10">Grade 10</option>
+                                    <option value="Grade 11">Grade 11</option>
+                                    <option value="Grade 12">Grade 12</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subject</label>
+                                <select class="form-select" id="subject" name="subject" required>
+                                    <option value="">Select Subject</option>
+                                    <option value="Science">Science</option>
+                                    <option value="Physics">Physics</option>
+                                    <option value="Chemistry">Chemistry</option>
+                                    <option value="Biology">Biology</option>
+                                    <option value="Mathematics">Mathematics</option>
+                                    <option value="History">History</option>
+                                    <option value="Geography">Geography</option>
+                                    <option value="English">English</option>
+                                    <option value="Social Studies">Social Studies</option>
+                                    <option value="Computer Science">Computer Science</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="topic" class="form-label">Topic/Chapter</label>
+                                <input type="text" class="form-control" id="topic" name="topic" placeholder="Enter topic name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="style" class="form-label">Mind Map Style</label>
+                                <select class="form-select" id="style" name="style" disabled>
+                                    <option value="cognitive">Cognitive Mindmap</option>
+                                </select>
+                                <div class="form-text">Using Cognitive Map style for optimal visualization</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="language" class="form-label">Language</label>
+                                <select class="form-select" id="language" name="language">
+                                    <option value="English">English</option>
+                                    <option value="Hindi">Hindi</option>
+                                    <option value="Spanish">Spanish</option>
+                                    <option value="French">French</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="curriculum_file" class="form-label">Upload Curriculum PDF (Optional)</label>
+                                <input type="file" class="form-control" id="curriculum_file" name="curriculum_file" accept=".pdf,.txt,.docx">
+                                <div class="form-text">Upload your own curriculum or textbook content</div>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Generate Cognitive Map</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Cognitive Map Preview</h5>
+                        <div id="loading" class="text-center d-none">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p>Generating your cognitive map...</p>
+                        </div>
+                        <div id="result" class="text-center">
+                            <p class="text-muted">Your cognitive map will appear here</p>
+                        </div>
+                        <div id="download-options" class="mt-3 text-center d-none">
+                            <button id="download-svg" class="btn btn-outline-primary btn-sm">Download SVG</button>
+                            <button id="download-png" class="btn btn-outline-primary btn-sm">Download PNG</button>
+                            <button id="copy-embed" class="btn btn-outline-secondary btn-sm">Copy Embed Code</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('mindmap-form');
+            const resultDiv = document.getElementById('result');
+            const loadingDiv = document.getElementById('loading');
+            const downloadOptions = document.getElementById('download-options');
+            
+            let currentMindmap = null;
+            
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Show loading
+                loadingDiv.classList.remove('d-none');
+                resultDiv.innerHTML = '';
+                downloadOptions.classList.add('d-none');
+                
+                // Prepare form data
+                const formData = new FormData(form);
+                
+                try {
+                    // Send request
+                    const response = await fetch('/api/generate-mindmap', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    // Parse response
+                    const data = await response.json();
+                    currentMindmap = data;
+                    
+                    // Hide loading
+                    loadingDiv.classList.add('d-none');
+                    
+                    // Display result
+                    if (data.html_embed) {
+                        resultDiv.innerHTML = data.html_embed;
+                    } else if (data.svg_url) {
+                        resultDiv.innerHTML = `<img src="${data.svg_url}" alt="Cognitive Map" class="img-fluid">`;
+                    } else {
+                        resultDiv.innerHTML = '<p class="text-danger">Failed to generate cognitive map</p>';
+                    }
+                    
+                    // Show download options
+                    downloadOptions.classList.remove('d-none');
+                } catch (error) {
+                    console.error('Error:', error);
+                    loadingDiv.classList.add('d-none');
+                    resultDiv.innerHTML = '<p class="text-danger">Error generating cognitive map</p>';
+                }
+            });
+            
+            // Download buttons
+            document.getElementById('download-svg').addEventListener('click', function() {
+                if (currentMindmap && currentMindmap.svg_url) {
+                    window.open(currentMindmap.svg_url, '_blank');
+                }
+            });
+            
+            document.getElementById('download-png').addEventListener('click', function() {
+                if (currentMindmap && currentMindmap.png_url) {
+                    window.open(currentMindmap.png_url, '_blank');
+                }
+            });
+            
+            document.getElementById('copy-embed').addEventListener('click', function() {
+                if (currentMindmap && currentMindmap.html_embed) {
+                    navigator.clipboard.writeText(currentMindmap.html_embed)
+                        .then(() => alert('Embed code copied to clipboard'))
+                        .catch(err => console.error('Error copying text: ', err));
+                } else if (currentMindmap && currentMindmap.svg_url) {
+                    const embedCode = `<img src="${window.location.origin}${currentMindmap.svg_url}" alt="Cognitive Map" style="width: 100%; max-width: 800px;">`;
+                    navigator.clipboard.writeText(embedCode)
+                        .then(() => alert('Embed code copied to clipboard'))
+                        .catch(err => console.error('Error copying text: ', err));
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

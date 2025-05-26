@@ -1,0 +1,114 @@
+POST http://localhost:8000/api/generate-mindmap
+Content-Type: multipart/form-data
+
+Example Requests (Form Data Format):
+=================================
+
+Example 1: Basic Science Topic
+----------------------------
+Form-Data:
+curriculum: CBSE
+grade: 10
+subject: Science
+topic: Chemical Reactions
+style: cognitive
+language: English
+
+Example 2: Mathematics Topic
+--------------------------
+Form-Data:
+curriculum: ICSE
+grade: 9
+subject: Mathematics
+topic: Trigonometry
+style: cognitive
+language: English
+
+Example 3: History Topic
+----------------------
+Form-Data:
+curriculum: IB
+grade: 11
+subject: History
+topic: World War II
+style: cognitive
+language: English
+
+Example 4: Computer Science Topic
+------------------------------
+Form-Data:
+curriculum: Cambridge
+grade: 12
+subject: Computer Science
+topic: Data Structures
+style: cognitive
+language: English
+
+Example 5: Biology Topic (Hindi)
+-----------------------------
+Form-Data:
+curriculum: CBSE
+grade: 11
+subject: Biology
+topic: Human Anatomy
+style: cognitive
+language: Hindi
+
+Postman Setup Instructions:
+========================
+1. Create a new POST request
+2. URL: http://localhost:8000/api/generate-mindmap
+3. In the "Body" tab:
+   - Select "form-data"
+   - Add each key-value pair as separate fields
+   - DO NOT send as JSON!
+
+4. Required Fields (form-data):
+   KEY          | VALUE (example)
+   -------------|---------------
+   curriculum   | CBSE
+   grade        | 10
+   subject      | Science
+   topic        | Chemical Reactions
+   style        | cognitive
+   language     | English
+
+5. Optional Fields:
+   KEY             | TYPE
+   ----------------|-------
+   curriculum_file | File
+
+Example cURL Command:
+------------------
+curl -X POST \
+  -F "curriculum=CBSE" \
+  -F "grade=10" \
+  -F "subject=Science" \
+  -F "topic=Chemical Reactions" \
+  -F "style=cognitive" \
+  -F "language=English" \
+  http://localhost:8000/api/generate-mindmap
+
+Example Response:
+---------------
+{
+    "mindmap_id": "f0364e79-e754-4aba-ba1b-766209303c1f",
+    "svg_url": "/static/img/mindmaps/f0364e79-e754-4aba-ba1b-766209303c1f.svg",
+    "png_url": "/static/img/mindmaps/f0364e79-e754-4aba-ba1b-766209303c1f.png",
+    "html_embed": null,
+    "nodes": {
+        "id": "root",
+        "text": "Chemical Reactions",
+        "children": [...],
+        "attributes": {...}
+    }
+}
+
+Available Image URLs after generation:
+----------------------------------
+- SVG: http://localhost:8000/static/img/mindmaps/{mindmap_id}.svg
+- PNG: http://localhost:8000/static/img/mindmaps/{mindmap_id}.png
+- Direct API: http://localhost:8000/api/mindmap/{mindmap_id}
+
+Note: Server must be running with command:
+python -m uvicorn app.main:app --reload 

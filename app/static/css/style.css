@@ -1,0 +1,126 @@
+/* Mind Map Generator Styles */
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header h1 {
+    color: #1976d2;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+header .lead {
+    color: #546e7a;
+    font-size: 1.2rem;
+}
+
+.card {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border: none;
+}
+
+.card-title {
+    color: #2e7d32;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #546e7a;
+}
+
+.form-select, .form-control {
+    border-radius: 6px;
+    padding: 10px 12px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s;
+}
+
+.form-select:focus, .form-control:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.1);
+}
+
+.btn-primary {
+    background-color: #1976d2;
+    border-color: #1976d2;
+    padding: 10px 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #1565c0;
+    border-color: #1565c0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(21, 101, 192, 0.3);
+}
+
+.btn-outline-primary {
+    color: #1976d2;
+    border-color: #1976d2;
+    margin: 0 5px;
+}
+
+.btn-outline-primary:hover {
+    background-color: #1976d2;
+    color: white;
+}
+
+.btn-outline-secondary {
+    color: #546e7a;
+    border-color: #546e7a;
+    margin: 0 5px;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #546e7a;
+    color: white;
+}
+
+#result {
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#result img {
+    max-width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+#loading p {
+    margin-top: 15px;
+    color: #1976d2;
+    font-weight: 500;
+}
+
+#download-options {
+    margin-top: 20px;
+} 
